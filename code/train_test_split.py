@@ -1,5 +1,5 @@
 import os
-from random import randint
+from random 
 try:
    import cPickle as pickle
 except:
@@ -8,7 +8,6 @@ except:
 root_file = "../images"
 all_entity_path = "../metadata/all_entity"
 dump_path = "../metadata/"
-every_test_num = 1
 
 train_label = []
 test_label  = []
@@ -29,10 +28,11 @@ for f in all_file :
     image_dir = os.path.join(root_file , f)
     images = os.listdir(image_dir)
 
-    test_idx = randint(0,len(images)-1)
+    test_num = len(images)/3
+    test_idx = random.sample(range(len(images)),test_num)
 
     for idx , name in enumerate(images) :
-        if idx == test_idx :
+        if idx in test_idx :
             test_path.append(os.path.join(f,name))
             triplet = f.split(" " , 2)
             label = [name2idx[triplet[0]],name2idx[triplet[1]],name2idx[triplet[2]]]
